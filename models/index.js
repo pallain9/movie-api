@@ -2,7 +2,6 @@ const Sequelize = require('sequelize')
 const MoviesModel = require('./movies')
 const DirectorsModel = require('./directors')
 const GenresModel = require('./genre')
-const RatingsModel = require('./ratings')
 
 const connection = new Sequelize('movies', 'root', 'Brayden9!', {
     host: 'localhost',
@@ -11,18 +10,23 @@ const connection = new Sequelize('movies', 'root', 'Brayden9!', {
 
 
 const Movies = MoviesModel(connection, Sequelize)
-const Directors = DirectorsModel(connection, Sequelize, Movies)
-const Genres = GenresModel(connection, Sequelize, Movies)
-const Ratings = RatingsModel(connection, Sequelize, Movies)
+const Directors = DirectorsModel(connection, Sequelize)
+const Genres = GenresModel(connection, Sequelize)
 
 
-Teams.hasMany(Players)
-Players.belongsTo(Teams)
+Movies.BelongsToMany(Directors, { through: MovieDirectors })
+Directors.BelongsToMany(Movies, { through: DirectorMovies })
+
+
+Movies.BelongsToMany(Genres, { through: MovieGenres })
+Genres.BelongsToMany(Movies, { through: MoviesByGenre })
+
+
+
 
 
 module.exports = {
     Movies,
     Directors,
-    Genres,
-    Ratings
+    Genres
 }

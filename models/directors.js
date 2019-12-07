@@ -1,8 +1,8 @@
 const Directors = (connection, Sequelize) => {
-    return connection.define('movies', {
+    return connection.define('directors', {
         id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-        Directors: { type: Sequelize.STRING },
+        directors: { type: Sequelize.STRING },
     }, { paranoid: true })
 }
 
-module.exports = Movies
+module.exports = Directors

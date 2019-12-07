@@ -1,10 +1,10 @@
-const Movies = (connection, Sequelize, Directors) => {
+const Movies = (connection, Sequelize) => {
     return connection.define('movies', {
         id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
         title: { type: Sequelize.STRING },
         runTime: { type: Sequelize.STRING },
         releaseDate: { type: Sequelize.STRING },
-        directorId: { type: Sequelize.INTEGER, reference: { model: Directors, key: 'id' } }
+        rating: { type: Sequelize.ENUM('Not Rated', 'G', 'R', 'Passed', 'PG', 'PG-13', 'Approved') },
     }, { paranoid: true })
 }
 
