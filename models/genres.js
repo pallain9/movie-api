@@ -1,11 +1,11 @@
-const Directors = (connection, Sequelize, Movies) => {
-    return connection.define('directors', {
+const Genres = (connection, Sequelize, Movies) => {
+    return connection.define('genres', {
         id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-        directors: { type: Sequelize.STRING },
+        genres: { type: Sequelize.STRING },
         moviesId: {
             type: Sequelize.INTEGER, references: { model: Movies, key: 'id' }
         }
     }, { paranoid: true })
 }
 
-module.exports = Directors
+module.exports = Genres
