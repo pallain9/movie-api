@@ -1,10 +1,7 @@
-const Genres = (connection, Sequelize, Movies) => {
+const Genres = (connection, Sequelize) => {
     return connection.define('genres', {
         id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
         genres: { type: Sequelize.STRING },
-        moviesId: {
-            type: Sequelize.INTEGER, references: { model: Movies, key: 'id' }
-        }
     }, { paranoid: true })
 }
 

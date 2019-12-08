@@ -1,10 +1,7 @@
-const Directors = (connection, Sequelize, Movies) => {
+const Directors = (connection, Sequelize) => {
     return connection.define('directors', {
         id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
         directors: { type: Sequelize.STRING },
-        moviesId: {
-            type: Sequelize.INTEGER, references: { model: Movies, key: 'id' }
-        }
     }, { paranoid: true })
 }
 
