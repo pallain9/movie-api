@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const MoviesModel = require('./movies')
 const DirectorsModel = require('./directors')
-const GenresModel = require('./genre')
+const GenresModel = require('./genres')
 const MovieDirectorsModel = require('./movie-directors')
 const MovieGenresModel = require('./movie-genres')
 
@@ -11,17 +11,17 @@ const connection = new Sequelize('movies', 'root', 'Brayden9!', {
 })
 
 
-const Movies = MoviesModel(connection, Sequelize, Directors, Genres)
-const Directors = DirectorsModel(connection, Sequelize, Movies)
-const Genres = GenresModel(connection, Sequelize, Movies)
+const Movies = MoviesModel(connection, Sequelize)
+const Directors = DirectorsModel(connection, Sequelize)
+const Genres = GenresModel(connection, Sequelize)
 const MovieDirectors = MovieDirectorsModel(connection, Sequelize, Movies, Directors)
 const MovieGenres = MovieGenresModel(connection, Sequelize, Movies, Genres)
 
 
-Movies.BelongsToMany(Directors, { through: MovieDirectors })
-Directors.BelongsToMany(Movies, { through: MovieDirectors })
-Movies.BelongsToMany(Genres, { through: MovieGenres })
-Genres.BelongsToMany(Movies, { through: MovieGenres })
+Movies.belongsToMany(Directors, { through: 'MovieDirectors' })
+Directors.belongsToMany(Movies, { through: 'MovieDirectors' })
+Movies.belongsToMany(Genres, { through: 'MovieGenres' })
+Genres.belongsToMany(Movies, { through: 'MovieGenres' })
 
 
 
@@ -30,5 +30,5 @@ module.exports = {
     Directors,
     Genres,
     MovieDirectors,
-    MovieGenresModel
+    MovieGenres
 }
