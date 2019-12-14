@@ -23,14 +23,14 @@ module.exports = {
 
     await queryInterface.createTable('genres', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-      genre: { type: Sequelize.STRING },
+      genres: { type: Sequelize.STRING },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP') },
       deletedAt: { type: Sequelize.DATE },
     })
     await queryInterface.createTable('directors', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-      director: { type: Sequelize.STRING },
+      directors: { type: Sequelize.STRING },
       createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP') },
       updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.literal('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP') },
       deletedAt: { type: Sequelize.DATE },
@@ -84,7 +84,7 @@ module.exports = {
 
     await queryInterface.dropTable('directors', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-      director: { type: Sequelize.STRING },
+      directors: { type: Sequelize.STRING },
       movieId: {
         type: Sequelize.INTEGER, references: { model: Movies, key: 'id' }
       },
@@ -95,7 +95,7 @@ module.exports = {
 
     await queryInterface.dropTable('genres', {
       id: { type: Sequelize.INTEGER, autoIncrement: true, primaryKey: true },
-      genre: { type: Sequelize.STRING },
+      genres: { type: Sequelize.STRING },
       movieId: {
         type: Sequelize.INTEGER, references: { model: Movies, key: 'id' }
       },

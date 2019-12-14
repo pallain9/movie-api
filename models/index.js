@@ -14,8 +14,8 @@ const connection = new Sequelize('movies', 'root', 'Brayden9!', {
 const Movies = MoviesModel(connection, Sequelize)
 const Directors = DirectorsModel(connection, Sequelize)
 const Genres = GenresModel(connection, Sequelize)
-const MovieDirectors = MovieDirectorsModel(connection, Sequelize, Movies, Directors)
-const MovieGenres = MovieGenresModel(connection, Sequelize, Movies, Genres)
+const MovieDirectors = MovieDirectorsModel(connection, Sequelize)
+const MovieGenres = MovieGenresModel(connection, Sequelize)
 
 
 Movies.belongsToMany(Directors, { through: 'MovieDirectors' })
