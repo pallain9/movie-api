@@ -102,8 +102,8 @@ async function postMovie(request, response) {
         })
         genreIds.push(newGenre.id)
     }
-    newTitle.setGenres(genreIds)
-    newTitle.save()
+    await newTitle.setGenres(genreIds)
+    await newTitle.save()
     console.log(newTitle)
 
     let newDirectors = []
@@ -116,8 +116,8 @@ async function postMovie(request, response) {
         })
         newDirectors.push(newDirector.id)
     }
-    newTitle.setDirectors(newDirectors)
-    newTitle.save()
+    await newTitle.setDirectors(newDirectors)
+    await newTitle.save()
     console.log(newTitle)
     const createdMovie = await models.Movies.findAll({
         where: { id: newTitle.id },
