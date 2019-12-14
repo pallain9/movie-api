@@ -60,10 +60,6 @@ async function postMovie(request, response) {
 
     let { title, directors, releaseDate, rating, runTime, genres } = request.body
 
-    releaseDate = new Date(releaseDate)
-
-    releaseDate = (releaseDate.getMonth() + 1) + "/" + (releaseDate.getDate() + 1) + "/" + releaseDate.getFullYear()
-
     let timeString = runTime
     if (typeof runTime === 'number') {
         timeString = runTime.toString()
